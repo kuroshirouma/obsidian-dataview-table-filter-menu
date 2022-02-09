@@ -94,12 +94,13 @@ concentration: No
 So if i wanted to add a filter for rituals:
   - Add this to filter arrays ```let ritualFilter = ['Yes','No'];```
   - Add this to the category array
-    ```{
-				menuName: "Ritual", 
-				el: ritualFilter, 
-				fmName: "ritual" 
-				}
-    ```
+```
+{
+menuName: "Ritual", 
+el: ritualFilter, 
+fmName: "ritual" 
+}
+```
 
 # Issues
 
