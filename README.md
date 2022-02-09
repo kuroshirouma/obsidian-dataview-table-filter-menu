@@ -25,7 +25,81 @@ Dynamically created filter menu for dataview tables in obsidian
 
 
 ### 5. Map and sort your dataview table
-  - Standard dataviewjs table mapping. Change the headers, change what you want to sort by and map your frontmatter keys to the headers.
+  - In the ```buildTable()``` function use the standard dataviewjs table mapping. Change the headers, change what you want to sort by and map your frontmatter keys to the headers.
+
+# Spells Example
+
+```// FILTER ARRAYS
+let schoolTypes = ['abjuration','conjuration','divination','enchantment','evocation','illusion','necromancy','transmutation'];
+let levelTypes = ['cantrip','1st-level','2nd-level','3rd-level','4th-level','5th-level','6th-level','7th-level','8th-level','9th-level'];
+let compTypes = ['V','S','M'];
+let concentration = ['Yes','No'];
+let castingTimes = ['Action','Bonus','minute','hour','Reaction'];
+let classNames = ['Artificer','Bard','Cleric','Druid','Paladin','Ranger','Sorcerer','Warlock','Wizard'];
+
+// CATEGORY ARRAY
+let categories = [{
+				menuName: "School", 
+				el: schoolTypes, 
+				fmName: "school" 
+				}, { 
+				menuName: "Level",
+				el: levelTypes,
+				fmName: "level"
+				}, {
+				menuName: "Components",
+				el: compTypes,
+				fmName: "comp"
+				}, {
+				menuName: "Concentration",
+				el: concentration,
+				fmName: "concentration"
+				}, {
+				menuName: "Cast time",
+				el: castingTimes,
+				fmName: "time"
+				}, {
+				menuName: "Class",
+				el: classNames,
+				fmName: "class"
+				}];
+
+// GENERATE THE TABLE
+function buildTable() {
+	if (tbl) {
+	    tbl.remove();
+	}
+	dv.table(["Name","School", "Level", "Concentration", "Casting Time", "Class"], 
+		tableContents.sort(t => t.file.link)
+		.map(t => [t.file.link, t.school, t.level, t.concentration, t.time, t.class])
+	);
+	tbl = document.getElementsByClassName("dataview")[0];
+}
+```
+And this is the frontmatter of one of the spells.
+```
+---
+level: 1st-level
+school: abjuration 
+class: Artificer, Ranger, Wizard
+ritual: Yes
+time: 1 'minute'
+range: 30 feet
+comp: V, S, M (a tiny bell and a piece of fine silver wire)
+duration: 8 'hours'
+concentration: No
+---
+```
+
+So if i wanted to add a filter for rituals:
+  - Add this to filter arrays ```let ritualFilter = ['Yes','No'];```
+  - Add this to the category array
+    ```{
+				menuName: "Ritual", 
+				el: ritualFilter, 
+				fmName: "ritual" 
+				}
+    ```
 
 # Issues
 
