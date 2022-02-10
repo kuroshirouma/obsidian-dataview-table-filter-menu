@@ -1,44 +1,22 @@
 ```dataviewjs
-
-
 let tbl;
-let dvPages = dv.pages('"_DM Screen/Spells/Blocks"');
+let dvPages = dv.pages('"NOTES_FOLDER_PATH"');
 let tableContents = dvPages;
 let fltArr = [];
 
 // FILTER ARRAYS
-let schoolTypes = ['abjuration','conjuration','divination','enchantment','evocation','illusion','necromancy','transmutation'];
-let levelTypes = ['cantrip','1st-level','2nd-level','3rd-level','4th-level','5th-level','6th-level','7th-level','8th-level','9th-level'];
-let compTypes = ['V','S','M'];
-let concentration = ['Yes','No'];
-let castingTimes = ['Action','Bonus','minute','hour','Reaction'];
-let classNames = ['Artificer','Bard','Cleric','Druid','Paladin','Ranger','Sorcerer','Warlock','Wizard'];
+let FILTER_VALUES_PLACEHOLDER1 = ['TEMP1','TEMP2']; //EXAMPLE: let schoolTypes = ['abjuration','divination']
+let FILTER_VALUES_PLACEHOLDER2 = ['TEMP3','TEMP4']; 
 
 // CATEGORY ARRAY
 let categories = [{
-				tabName: "School", // NAME OF THE FILTER MENU
-				el: schoolTypes, // FILTER ARRAY FOR THIS MENU
-				fmName: "school", // NAME OF YOUR FRONTMATTER ATTRIBUTE
+				menuName: "CHANGE_ME", 			// NAME OF THE FILTER MENU - EXAMPLE: tabName: "Schools",
+				el: FILTER_VALUES_PLACEHOLDER1, // FILTER ARRAY FOR THIS MENU - EXAMPLE: el: schoolTypes,
+				fmName: "FM_KEY_NAME" 			// NAME OF YOUR FRONTMATTER KEY - EXAMPLE: fmName: "school"
 				}, { 
-				tabName: "Level",
-				el: levelTypes,
-				fmName: "level",
-				}, {
-				tabName: "Components",
-				el: compTypes,
-				fmName: "comp",
-				}, {
-				tabName: "Concentration",
-				el: concentration,
-				fmName: "concentration",
-				}, {
-				tabName: "Cast time",
-				el: castingTimes,
-				fmName: "time",
-				}, {
-				tabName: "Class",
-				el: classNames,
-				fmName: "class",
+				menuName: "CHANGE_ME",
+				el: FILTER_VALUES_PLACEHOLDER2,
+				fmName: "FM_KEY_NAME2"
 				}];
 
 // GENERATE THE TABLE
@@ -46,9 +24,9 @@ function buildTable() {
 	if (tbl) {
 	    tbl.remove();
 	}
-	dv.table(["Name","School", "Level", "Concentration", "Casting Time", "Class"], // ENTER TABLE HEADERS HERE
-		tableContents.sort(t => t.file.link)
-		.map(t => [t.file.link, t.school, t.level, t.concentration, t.time, t.class]) // ENTER YOUR FRONTMATTER ATTRIBUTE NAMES HERE
+	dv.table(["File Name","Header2","Header3"], 				// ENTER TABLE HEADERS HERE
+		tableContents.sort(t => t.file.link)  					// CHANGE WHAT TO SORT BY
+		.map(t => [t.file.link, t.FM_KEY_NAME, t.FM_KEY_NAME2]) // ENTER YOUR FRONTMATTER KEYS HERE
 	);
 	tbl = document.getElementsByClassName("dataview")[0];
 }
@@ -111,7 +89,7 @@ for (let i = 0; i < categories.length; i++) {
 	const testButton = root.createEl("button", {cls:"dropbtn", attr:{id:"drop-"+categories[i].fmName}})
 	testButton.addEventListener("click",showMenu);
 	const container = testButton.createEl("div", {cls:"dropdown-content"});
-	testButton.createEl("h5", {text:categories[i].tabName, cls:"inaktiv"});
+	testButton.createEl("h5", {text:categories[i].menuName, cls:"inaktiv"});
 	let element = categories[i].el;
 	for (let j = 0; j < element.length; j++) {
 		container.createEl("label",{text:element[j].charAt(0).toUpperCase()+element[j].slice(1), 
