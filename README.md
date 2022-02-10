@@ -3,8 +3,9 @@ Dynamically created filter menu for dataview tables in obsidian
 
 # How to use
 
-### 1. Download the "Filter Table.md" file
-  There are examples for steps 3. and 4. inside the file.
+### 1. Download the "Filter Table.md" and "filterMenu.css" files
+  There are examples for steps 3. and 4. inside the "Filter Table.md" file.
+  You will also need the "filterMenu.css" file, place this into the snippets folder of your vault and enable it in the settings (Keep in mind the styling is just a placeholder for now.)
   
 ### 2. Change the path to your notes
 
