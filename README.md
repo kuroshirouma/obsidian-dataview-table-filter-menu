@@ -21,7 +21,7 @@ Dynamically created filter menu for dataview tables in obsidian
 
   Below the comment ```//FILTER ARRAYS``` on line 7 define all the values that you want to filter by. Each array should contain values that can be found in the key of your frontmatter that you're filtering.
   - ```FILTER_VALUES_PLACEHOLDER``` change this to the same name you wrote in the ```el``` attribute in the previous step
-  - ```['TEMP1','TEMP2']``` change this to the values that can be found in the key of your frontmatter (that this array will be filtering)
+  - ```['TEMP1','TEMP2']``` change this to the values that can be found in the key of your frontmatter (that this array will be filtering). These will also be used as labels in the dropdown menu.
 
 
 ### 5. Map and sort your dataview table
