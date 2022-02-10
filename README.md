@@ -108,4 +108,5 @@ fmName: "ritual"
  - You cannot create a menu for sorting, will probably add later on.
  - There is no way to exclude values. Might change the checkboxes to custom divs with states so you can chose wheter you want to turn it off, include or exclude from the filter.
  - The filter works "top-down" or rather "left-right". It will first filter by the first category then those results will be filtered by the second category and so on. Currently no plan on "fixing" this.
+ - Filters reset when you switch notes. Not sure if i can fix this but I'll see.
  - There is no styling. The reason is that the code is still a bit untidy so i didn't botter styling it much yet since it's likely to change. 
